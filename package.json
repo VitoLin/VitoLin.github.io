@@ -1,17 +1,30 @@
 {
-  "name": "vitolin.github.io",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "npx @11ty/eleventy --input=src",
-    "dev": "npx @11ty/eleventy --serve --input=src"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "@11ty/eleventy": "^3.1.2"
-  }
+    "name": "vitolin.github.io",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "npx @11ty/eleventy",
+        "serve": "npx @11ty/eleventy --serve",
+        "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|jsx|tsx|json|liquid)\"",
+        "clean": "rm -rf _site"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^7.1.0",
+        "@highlightjs/cdn-assets": "^11.11.1",
+        "animejs": "^4.2.2",
+        "markdown-it": "^14.1.0",
+        "markdown-it-anchor": "^9.2.0",
+        "markdown-it-table-of-contents": "^1.1.0",
+        "three": "^0.181.2"
+    },
+    "devDependencies": {
+        "@11ty/eleventy": "^3.1.2",
+        "@shopify/prettier-plugin-liquid": "^1.10.0",
+        "prettier": "^3.7.4"
+    }
 }

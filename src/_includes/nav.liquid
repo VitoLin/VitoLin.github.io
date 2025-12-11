@@ -1,0 +1,42 @@
+<style>
+    /* Navigation Bar */
+    .site-nav {
+        padding: 1rem;
+        background-color: #fff;
+    }
+
+    .site-nav ul {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .site-nav a {
+        color: #333;
+        font-size: 1.5rem;
+        transition: color 0.2s;
+    }
+
+    .site-nav a:hover {
+        color: #007bff;
+    }
+</style>
+<nav class="site-nav">
+    <ul>
+        <li>
+            {% render "shortcodes/animatedIcons.liquid", href: "/", aria_label: "Home", fa_icon: "fa-solid fa-house" %}
+        </li>
+        <li>
+            {% render "shortcodes/animatedIcons.liquid", href: site.links.github, aria_label: "GitHub", fa_icon: "fa-brands fa-github" %}
+        </li>
+        <li>
+            {% render "shortcodes/animatedIcons.liquid", href: site.links.linkedin, aria_label: "LinkedIn", fa_icon: "fa-brands fa-linkedin" %}
+        </li>
+         <li>
+            {% render "shortcodes/animatedIcons.liquid", href: "/desire", aria_label: "Desire", fa_icon: "fa-solid fa-question" %}
+        </li>
+    </ul>
+</nav>

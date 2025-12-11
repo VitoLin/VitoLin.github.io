@@ -1,0 +1,227 @@
+<style>
+    /* Container */
+    .dice-container {
+        perspective: 1000px;
+        width: 200px;
+        height: 200px;
+        margin: 50px auto;
+    }
+
+    .dice {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transform-origin: center;
+    }
+
+    /* Faces
+     - remove the external border (it causes tiny visible gaps along edges when the dice rotates)
+     - use an inset box-shadow to simulate a thin edge instead
+     - hide backfaces to prevent the opposite side showing through at glancing angles
+     - use box-sizing so pseudo-elements and shadows don't change layout
+  */
+    .face {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: #64a3e1ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow:
+            inset 0 0 0 2px rgba(0, 0, 0, 0.06),
+            /* subtle inner edge instead of border */ 0 6px 18px rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        box-sizing: border-box;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    /* Slight overlap to eliminate seams:
+     Push faces a hair further out so their edges overlap instead of leaving gaps.
+     Adjust the +1px value if your dice size or border shadow changes.
+  */
+    .front {
+        transform: rotateY(0deg) translateZ(calc(100px + 1px));
+    }
+    .back {
+        transform: rotateX(180deg) translateZ(calc(100px + 1px));
+    }
+    .right {
+        transform: rotateY(90deg) translateZ(calc(100px + 1px));
+    }
+    .left {
+        transform: rotateY(-90deg) translateZ(calc(100px + 1px));
+    }
+    .top {
+        transform: rotateX(90deg) translateZ(calc(100px + 1px));
+    }
+    .bottom {
+        transform: rotateX(-90deg) translateZ(calc(100px + 1px));
+    }
+
+    /* Subtle bevel via pseudo-element (keeps faces visually crisp while not affecting layout) */
+    .face::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.02) inset;
+        box-sizing: border-box;
+    }
+
+    /* Pips grid */
+    .pips {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 12px;
+        padding: 18px;
+        box-sizing: border-box;
+    }
+
+    .pip {
+        width: 28px;
+        height: 28px;
+        background: #ffffff;
+        border-radius: 50%;
+        justify-self: center;
+        align-self: center;
+        opacity: 0;
+        transition: opacity 0.1s;
+    }
+
+    /* Map pip positions (1..9 left-to-right top-to-bottom):
+     1 2 3
+     4 5 6
+     7 8 9
+  */
+
+    /* Face 1: center */
+    .pips-1 .pip:nth-child(5) {
+        opacity: 1;
+    }
+
+    /* Face 2: top-left + bottom-right */
+    .pips-2 .pip:nth-child(1),
+    .pips-2 .pip:nth-child(9) {
+        opacity: 1;
+    }
+
+    /* Face 3: top-left, center, bottom-right */
+    .pips-3 .pip:nth-child(1),
+    .pips-3 .pip:nth-child(5),
+    .pips-3 .pip:nth-child(9) {
+        opacity: 1;
+    }
+
+    /* Face 4: four corners */
+    .pips-4 .pip:nth-child(1),
+    .pips-4 .pip:nth-child(3),
+    .pips-4 .pip:nth-child(7),
+    .pips-4 .pip:nth-child(9) {
+        opacity: 1;
+    }
+
+    /* Face 5: four corners + center */
+    .pips-5 .pip:nth-child(1),
+    .pips-5 .pip:nth-child(3),
+    .pips-5 .pip:nth-child(5),
+    .pips-5 .pip:nth-child(7),
+    .pips-5 .pip:nth-child(9) {
+        opacity: 1;
+    }
+
+    /* Face 6: left and right columns (three each) */
+    .pips-6 .pip:nth-child(1),
+    .pips-6 .pip:nth-child(4),
+    .pips-6 .pip:nth-child(7),
+    .pips-6 .pip:nth-child(3),
+    .pips-6 .pip:nth-child(6),
+    .pips-6 .pip:nth-child(9) {
+        opacity: 1;
+    }
+
+    /* Make pips a bit smaller on smaller dices */
+    @media (max-width: 240px) {
+        .pip {
+            width: 22px;
+            height: 22px;
+        }
+        .pips {
+            padding: 12px;
+            gap: 8px;
+        }
+        .face {
+            border-radius: 8px;
+        }
+    }
+</style>
+
+<div class="dice-container">
+    <div class="dice">
+        <div class="face front">
+            <div class="pips pips-1">
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span> <span class="pip"></span
+                ><span class="pip"></span><span class="pip"></span> <span class="pip"></span><span class="pip"></span
+                ><span class="pip"></span>
+            </div>
+        </div>
+
+        <div class="face back">
+            <div class="pips pips-2">
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span> <span class="pip"></span
+                ><span class="pip"></span><span class="pip"></span> <span class="pip"></span><span class="pip"></span
+                ><span class="pip"></span>
+            </div>
+        </div>
+
+        <div class="face right">
+            <div class="pips pips-3">
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span> <span class="pip"></span
+                ><span class="pip"></span><span class="pip"></span> <span class="pip"></span><span class="pip"></span
+                ><span class="pip"></span>
+            </div>
+        </div>
+
+        <div class="face left">
+            <div class="pips pips-4">
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span> <span class="pip"></span
+                ><span class="pip"></span><span class="pip"></span> <span class="pip"></span><span class="pip"></span
+                ><span class="pip"></span>
+            </div>
+        </div>
+
+        <div class="face top">
+            <div class="pips pips-5">
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span> <span class="pip"></span
+                ><span class="pip"></span><span class="pip"></span> <span class="pip"></span><span class="pip"></span
+                ><span class="pip"></span>
+            </div>
+        </div>
+
+        <div class="face bottom">
+            <div class="pips pips-6">
+                <span class="pip"></span><span class="pip"></span><span class="pip"></span> <span class="pip"></span
+                ><span class="pip"></span><span class="pip"></span> <span class="pip"></span><span class="pip"></span
+                ><span class="pip"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- animation handled by /js/dice.js (module script included in base template) -->
+<script type="module">
+    import { animate } from '/js/anime.esm.min.js';
+    animate('.dice', {
+        rotateY: '360deg',
+        rotateX: '360deg',
+        loop: true,
+        easing: 'linear',
+        duration: 8000,
+    });
+</script>
