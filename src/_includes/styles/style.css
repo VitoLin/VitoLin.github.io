@@ -6,6 +6,17 @@ body {
   line-height: 1.6;
 }
 
+/* Global link styles */
+a {
+  text-decoration: none;
+  color: #3499fe;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #003371;
+}
+
 /* Blockquote styling */
 blockquote {
   margin: .5rem 0;
@@ -109,6 +120,16 @@ pre code {
   background: none;
   color: inherit;
   padding: 0;
+}
+
+/* Code link styles */
+a code {
+  color: #3499fe;
+  transition: color 0.2s ease;
+}
+
+a:hover code {
+  color: #003371;
 }
 
 /* Make images responsive within content */
