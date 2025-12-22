@@ -1,5 +1,5 @@
 ---
-title: "MCPWrapped"
+title: "Getting MCP Tools to Work"
 date: 2025-12-05
 tags: post
 permalink: "/mcpwrapped/"
