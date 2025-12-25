@@ -33,6 +33,8 @@ export default async function (eleventyConfig) {
         [`node_modules/@highlightjs/cdn-assets/styles/${siteData.highlightStyle}`]: `styles/${siteData.highlightStyle}`,
     });
 
+    eleventyConfig.addWatchTarget("./src/_includes/shortcodes/");
+
     const shortcodesLoader = path.join(
         "src/_includes/shortcodes",
         "shortcodes.js",
