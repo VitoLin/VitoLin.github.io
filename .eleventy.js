@@ -1,9 +1,9 @@
 import markdownIt from "markdown-it";
 import MarkdownItTOC from "markdown-it-table-of-contents";
 import AnchorPlugin from "markdown-it-anchor";
-import fs from "fs";
 import path from "path";
 import { pathToFileURL } from "url";
+import siteData from "./src/_data/site.json" with { type: "json" };
 
 export default async function (eleventyConfig) {
     // markdown-it setup
@@ -25,10 +25,12 @@ export default async function (eleventyConfig) {
         "node_modules/three/build/three.module.min.js":
             "js/three.module.min.js",
         "node_modules/three/build/three.core.min.js": "js/three.core.min.js",
-        "node_modules/@fortawesome/fontawesome-free/css/all.min.css": "styles/font-awesome.css",
+        "node_modules/@fortawesome/fontawesome-free/css/all.min.css":
+            "styles/font-awesome.css",
         "node_modules/@fortawesome/fontawesome-free/webfonts": "webfonts",
-        "node_modules/@highlightjs/cdn-assets/highlight.min.js": "js/highlight.min.js",
-        "node_modules/@highlightjs/cdn-assets/styles/vs2015.min.css": "styles/vs2015.min.css",
+        "node_modules/@highlightjs/cdn-assets/highlight.min.js":
+            "js/highlight.min.js",
+        [`node_modules/@highlightjs/cdn-assets/styles/${siteData.highlightStyle}`]: `styles/${siteData.highlightStyle}`,
     });
 
     const shortcodesLoader = path.join(

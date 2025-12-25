@@ -18,16 +18,13 @@
     scene.add(cube);
 
     // Create an anime.js animation but do not autoplay — we'll control progress via scroll.
-    const rotationAnim = animate(
-        cube.rotation,
-        {
-            x: Math.PI * 2,
-            y: Math.PI * 2,
-            duration: 4000,
-            easing: 'easeInOutSine',
-            autoplay: false,
-        }
-    );
+    const rotationAnim = animate(cube.rotation, {
+        x: Math.PI * 2,
+        y: Math.PI * 2,
+        duration: 4000,
+        easing: 'easeInOutSine',
+        autoplay: false,
+    });
 
     // number of full rotations across the entire page scroll (use 1 for one full loop)
     const loops = 1;
@@ -72,10 +69,13 @@
     onResize();
 
     // Optional: only update when the container is visible
-    const io = new IntersectionObserver((entries) => {
-        containerVisible = entries[0].isIntersecting;
-        if (containerVisible) onScroll();
-    }, { threshold: 0 });
+    const io = new IntersectionObserver(
+        (entries) => {
+            containerVisible = entries[0].isIntersecting;
+            if (containerVisible) onScroll();
+        },
+        { threshold: 0 },
+    );
     io.observe(container);
 
     // Keep the render loop for Three.js rendering.

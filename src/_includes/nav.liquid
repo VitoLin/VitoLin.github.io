@@ -27,13 +27,21 @@
 <nav class="site-nav">
     <ul>
         <li>
-            {% render "shortcodes/animatedIcons.liquid", href: "/", aria_label: "Home", fa_icon: "fa-solid fa-house" %}
+            {% render 'shortcodes/animatedIcons.liquid', href: '/', aria_label: 'Home', fa_icon: 'fa-solid fa-house' %}
         </li>
         <li>
-            {% render "shortcodes/animatedIcons.liquid", href: site.links.github, aria_label: "GitHub", fa_icon: "fa-brands fa-github" %}
+            {% render 'shortcodes/animatedIcons.liquid',
+                href: site.links.github,
+                aria_label: 'GitHub',
+                fa_icon: 'fa-brands fa-github'
+            %}
         </li>
         <li>
-            {% render "shortcodes/animatedIcons.liquid", href: site.links.linkedin, aria_label: "LinkedIn", fa_icon: "fa-brands fa-linkedin" %}
+            {% render 'shortcodes/animatedIcons.liquid',
+                href: site.links.linkedin,
+                aria_label: 'LinkedIn',
+                fa_icon: 'fa-brands fa-linkedin'
+            %}
         </li>
     </ul>
 </nav>
