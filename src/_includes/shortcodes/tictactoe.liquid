@@ -1,11 +1,12 @@
 <style>
     .tictactoe-minimax-example {
+        position: relative;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
         width: 100%;
         aspect-ratio: 1 / 1;
-        padding: 8%;
+        padding: 6%;
         gap: 8%;
         box-sizing: border-box;
         background-color: #ffffff;
@@ -62,6 +63,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        line-height: 1;
     }
 
     .tictactoe-cell.x-player::after {
@@ -83,6 +85,32 @@
 
     .tictactoe-board.winner {
         outline: 4px solid #2ecc71;
+    }
+
+    .tictactoe-reset-button {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+        background-color: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+
+        z-index: 10;
+    }
+
+    .tictactoe-reset-button::after {
+        content: '\f2ea';
+        font-family: 'Font Awesome 7 Free';
+        font-weight: 900;
     }
 </style>
 
@@ -123,6 +151,32 @@
         board = createTicTacToeBoard(minimaxExample, i);
         boards.push(board);
     }
+
+    function resetMinimaxExample() {
+        for (let i = 0; i < boards.length; i++) {
+            setBoardState(i, [0, 0, 0, 0, 0, 0, 0, 0, 0]);
+            boards[i].classList.remove('blocked');
+            boards[i].classList.remove('winner');
+        }
+    }
+</script>
+
+<script type="module">
+    // Reset button
+    import { animate } from '/js/anime.esm.min.js';
+
+    const resetButton = document.createElement('button');
+    resetButton.classList.add('tictactoe-reset-button');
+    minimaxExample.appendChild(resetButton);
+
+    resetButton.addEventListener('click', () => {
+        animate(resetButton, {
+            scale: [0.9, 1],
+            duration: 400,
+            easing: 'easeInOutCubic',
+        });
+        resetMinimaxExample();
+    });
 </script>
 
 <script>
@@ -155,8 +209,6 @@
 <script>
     // Apply moves
     function applyMove(boardIndex, cellIndex) {
-        console.log(`Applying move on board ${boardIndex}, cell ${cellIndex}`);
-
         const prevState = boardIndex > 0 ? getBoardState(boardIndex - 1) : [0, 0, 0, 0, 0, 0, 0, 0, 0];
         const currentState = [...prevState];
 
