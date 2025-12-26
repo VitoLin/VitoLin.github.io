@@ -1,6 +1,7 @@
 import markdownIt from "markdown-it";
 import MarkdownItTOC from "markdown-it-table-of-contents";
 import AnchorPlugin from "markdown-it-anchor";
+import MarkdownItContainer from "markdown-it-container";
 import path from "path";
 import { pathToFileURL } from "url";
 import siteData from "./src/_data/site.json" with { type: "json" };
@@ -17,6 +18,8 @@ export default async function (eleventyConfig) {
     // plugins https://www.npmjs.com/search?q=keywords:markdown-it-plugin
     md.use(MarkdownItTOC, { includeLevel: [2, 3, 4] });
     md.use(AnchorPlugin);
+    md.use(MarkdownItContainer, "warning");
+    md.use(MarkdownItContainer, "info");
 
     eleventyConfig.addPassthroughCopy({
         "src/_includes/styles/style.css": "styles/style.css",

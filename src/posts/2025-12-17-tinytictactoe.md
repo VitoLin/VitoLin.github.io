@@ -19,9 +19,11 @@ The Minimax algorithm assumes that both players are playing optimally and at eac
 
 We can think of us winning as a positive score, and the more we win by, the higher the score. For the opponent wining, we would receive a negative score, and the more they win by the lower the score we receive. A tie would be a score of 0.
 
-Below is an example of how the Minimax algorithm would evaluate a Tic-Tac-Toe board state. You can click on the cells to change the board state and see how the Minimax algorithm evaluates it.
-{% tictactoe %}
+::: info
+Below is a 3x3 grid of Tic-Tac-Toe games, where each board represents a different state in the game. You can adjust the move for either player at different stages in the game by clicking on a cell. The Minimax algorithm then evaluates how the game would proceed from that state if both players played optimally.
+:::
 
+{% tictactoe %}
 
 The pseudocode for this process is below:
 ```js

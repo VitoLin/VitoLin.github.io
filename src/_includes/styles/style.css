@@ -40,6 +40,40 @@ blockquote footer {
   color: #666;
 }
 
+/* markdown-it-containers */
+.warning, .info {
+  padding: .3rem 1rem;
+  margin-bottom: 1rem;
+  border-left: 0.25rem solid;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background-color: transparent;
+}
+
+.info {
+  border-left-color: #0969da;
+}
+
+.warning {
+  border-left-color: #d2991d;
+}
+
+.info::before, .warning::before {
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'Font Awesome 7 Free';
+}
+
+.info::before {
+  content: "\f05a  Note"; 
+  color: #0969da;
+}
+
+.warning::before {
+  content: "\f071 Warning";
+  color: #d2991d;
+}
+
 main {
   max-width: 800px;
   margin: 0 auto;
