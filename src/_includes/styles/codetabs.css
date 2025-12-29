@@ -1,0 +1,71 @@
+.code-tabs {
+    border: 1px solid #f0f0f0;
+    border-radius: 3px;
+}
+.code-tabs pre,
+.code-tabs input {
+    display: none;
+}
+.code-tabs input:checked + pre {
+    display: block;
+    max-height: 360px;
+    height: 360px;
+    width: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 16px;
+    margin: 0;
+    white-space: pre;
+    font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+        "Courier New", monospace;
+    font-size: 13px;
+}
+
+.code-tabs label {
+    color: rgba(191, 191, 191, 1);
+    white-space: nowrap;
+}
+.code-tabs input:checked + label {
+    color: rgba(38, 38, 38, 1);
+}
+.code-tabs ul {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    user-select: none;
+    border-bottom: 1px solid #f0f0f0;
+}
+.code-tabs li {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+.code-tabs label {
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 6px;
+    font-size: 14px;
+    line-height: 1;
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+.code-tabs li ~ li::before {
+    content: "";
+    height: 12px;
+    width: 1px;
+    background: rgba(191, 191, 191, 1);
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

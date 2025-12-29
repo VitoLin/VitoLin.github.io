@@ -19,14 +19,18 @@ The Minimax algorithm assumes that both players are playing optimally and at eac
 
 We can think of us winning as a positive score, and the more we win by, the higher the score. For the opponent wining, we would receive a negative score, and the more they win by the lower the score we receive. A tie would be a score of 0.
 
+[Stockfish](https://github.com/official-stockfish/Stockfish), the [highest ranking chess engine](https://computerchess.org.uk/ccrl/404/), uses the Minimax algorithm [reference](https://github.com/official-stockfish/Stockfish/wiki/Stockfish-FAQ#what-is-depth)
+
 ::: info
 Below is a 3x3 grid of Tic-Tac-Toe games, where each board represents a different state in the game. You can adjust the move for either player at different stages in the game by clicking on a cell. The Minimax algorithm then evaluates how the game would proceed from that state if both players played optimally.
 :::
 
 {% tictactoe %}
 
-The pseudocode for this process is below:
-```js
+## Creating the Game
+
+```js [g1:Psuedocode]
+// https://en.wikipedia.org/wiki/Minimax#Pseudocode
 function minimax(node, depth, maximizingPlayer) is
     if depth = 0 or node is a terminal node then
         return the heuristic value of node
@@ -42,10 +46,30 @@ function minimax(node, depth, maximizingPlayer) is
         return value
 ```
 
-### Example with Tic-Tac-Toe
+```python [g1:Python]
+def minimax(board, depth, player):
+    # Heuristic evaluation
+    winner = check_if_won(board)
+    if winner == 1:
+        return 10 - depth
+    if winner == -1:
+        return depth - 10
+    possible_moves = get_possible_moves(board)
+    if not possible_moves:
+        return 0
 
+    if player == 1: # Maximizer
+        best_val = float('-inf')
+        for move in possible_moves:
+            best_val = max(best_val, minimax(apply_move(board, move, 1), depth + 1, -1))
+        return best_val
+    else: # Minimizer
+        best_val = float('inf')
+        for move in possible_moves:
+            best_val = min(best_val, minimax(apply_move(board, move, -1), depth + 1, 1))
+        return best_val
+```
 
-## Creating the Game
 
 ### Python implementation
 

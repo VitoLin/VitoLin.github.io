@@ -6,7 +6,7 @@
     "scripts": {
         "build": "npx @11ty/eleventy",
         "serve": "npx @11ty/eleventy --serve",
-        "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|jsx|tsx|json|liquid)\"",
+        "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|jsx|tsx|json|css|liquid)\"",
         "clean": "rm -rf _site"
     },
     "keywords": [],
@@ -19,6 +19,7 @@
         "animejs": "^4.2.2",
         "markdown-it": "^14.1.0",
         "markdown-it-anchor": "^9.2.0",
+        "markdown-it-codetabs": "^1.2.0",
         "markdown-it-container": "^4.0.0",
         "markdown-it-table-of-contents": "^1.1.0",
         "three": "^0.181.2"

@@ -2,6 +2,7 @@ import markdownIt from "markdown-it";
 import MarkdownItTOC from "markdown-it-table-of-contents";
 import AnchorPlugin from "markdown-it-anchor";
 import MarkdownItContainer from "markdown-it-container";
+import markdownItCodetabs from "markdown-it-codetabs";
 import path from "path";
 import { pathToFileURL } from "url";
 import siteData from "./src/_data/site.json" with { type: "json" };
@@ -20,9 +21,11 @@ export default async function (eleventyConfig) {
     md.use(AnchorPlugin);
     md.use(MarkdownItContainer, "warning");
     md.use(MarkdownItContainer, "info");
+    md.use(markdownItCodetabs);
 
     eleventyConfig.addPassthroughCopy({
         "src/_includes/styles/style.css": "styles/style.css",
+        "src/_includes/styles/codetabs.css": "styles/codetabs.css",
         "node_modules/animejs/dist/bundles/anime.esm.min.js":
             "js/anime.esm.min.js",
         "node_modules/three/build/three.module.min.js":
