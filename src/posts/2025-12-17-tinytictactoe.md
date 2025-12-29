@@ -28,6 +28,7 @@ Below is a 3x3 grid of Tic-Tac-Toe games, where each board represents a differen
 {% tictactoe %}
 
 ## Creating the Game
+The code for the game can be found on my github page ([tinytictactoe](https://github.com/VitoLin/tinytictactoe)). Below is a simple implementation of the Minimax algorithm in pseudocode and Python.
 
 ```js [g1:Psuedocode]
 // https://en.wikipedia.org/wiki/Minimax#Pseudocode
@@ -70,37 +71,15 @@ def minimax(board, depth, player):
         return best_val
 ```
 
-
-### Python implementation
-
 ### TinkerCAD Proof of Concept
-To get less concerned looks in public, I simulated the project first in TinkerCAD.
+![](https://github.com/VitoLin/VitoLin.github.io/blob/main/src/_static/circuit.png)
 
-https://www.tinkercad.com/things/ewSBIPnRqvL-copy-of-display/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=KI1W2gOHwPRZwAMvh86yNdgH0sr7LUl6wwLwan1sSCs
+I simulated the project first in TinkerCAD as it made it much easier to iterate quickly, especially since I did not need to carry the physical Arduino and mess of wires around. You can view and interact with the simulation at this [TinkerCad link](https://www.tinkercad.com/things/ewSBIPnRqvL-ai-tic-tac-toe).
 
-### Wiring it up
-
-### I want to train it on the Arduino as well
-
-## Learnings
 
 ## Continuation
+At the start of this project, I wanted to challenge myself by trying to reduce the storage needed to fit the "weights" of the TicTacToe game states into the limited memory of the Arduino Uno (32KB of flash memory and 2KB of SRAM).
 
+I wanted to use techniques like pruning, symmetry reduction, and storing only games that the AI would start to reduce the number of states that needed to be stored. The more elegant solution ended up just using the location in memory as the state itself.
 
-Talk about how arduino less ram than apollo 11
-
-We will be reducing the possible moves by 
-1. Pruning any moves that don't result in a win or a tie
-2. Checking if rotation or mirroring matches a stored state to reduce the amount of states we have to store
-
-# Unbeatable Tic Tac Toe on the Arduino
-5,478 possible board states
-2 for whichever turn it is
-10,956 possible states
-
-incorrect: https://www.reddit.com/r/explainlikeimfive/comments/15rlp9e/comment/jwp4rc4/?utm_source=reddit&utm_medium=web2x&context=3
-
-32kb in flash memory
-
-10 and -10 highest value, need 8 bit int to represent
-
+I think a fun next step would be to implement a more complex game with larger state space or to to make the interface to play against the bot to be more interesting (e.g. a physical board).
