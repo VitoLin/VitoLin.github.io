@@ -24,8 +24,8 @@ export default async function (eleventyConfig) {
     md.use(markdownItCodetabs);
 
     eleventyConfig.addPassthroughCopy({
-        "src/_includes/styles/style.css": "styles/style.css",
-        "src/_includes/styles/codetabs.css": "styles/codetabs.css",
+        "src/_includes/styles": "styles",
+        "src/_static": "static",
         "node_modules/animejs/dist/bundles/anime.esm.min.js":
             "js/anime.esm.min.js",
         "node_modules/three/build/three.module.min.js":

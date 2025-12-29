@@ -72,7 +72,7 @@ def minimax(board, depth, player):
 ```
 
 ### TinkerCAD Proof of Concept
-![](https://github.com/VitoLin/VitoLin.github.io/blob/main/src/_static/circuit.png)
+![](/static/circuit.png)
 
 I simulated the project first in TinkerCAD as it made it much easier to iterate quickly, especially since I did not need to carry the physical Arduino and mess of wires around. You can view and interact with the simulation at this [TinkerCad link](https://www.tinkercad.com/things/ewSBIPnRqvL-ai-tic-tac-toe).
 
