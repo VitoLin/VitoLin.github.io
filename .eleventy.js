@@ -39,6 +39,8 @@ export default async function (eleventyConfig) {
         [`node_modules/@highlightjs/cdn-assets/styles/${siteData.highlightStyle}`]: `styles/${siteData.highlightStyle}`,
     });
 
+    eleventyConfig.addPassthroughCopy("CNAME");
+
     eleventyConfig.addWatchTarget("./src/_includes/shortcodes/");
 
     const shortcodesLoader = path.join(
