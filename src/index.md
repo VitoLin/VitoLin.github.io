@@ -4,7 +4,9 @@ permalink: "/"
 
 ---
 ## Hello, I'm Vito 👋
-I am a Notre Dame Alumnus from St. Louis. I am currently working as a Software Developer at [AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html). 
+I am a Notre Dame Alumnus from St. Louis, Missouri. Currently, I'm a Software Developer at [AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html).
+
+You can reach me at [vitolin1000@gmail.com](mailto:vitolin1000@gmail.com)!
 
 ### Posts
 {% for post in collections.post reversed %}
