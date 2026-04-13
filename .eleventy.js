@@ -26,6 +26,7 @@ export default async function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy({
         "src/_includes/styles": "styles",
         "src/_static": "static",
+        "src/_js": "js",
         "node_modules/animejs/dist/bundles/anime.esm.min.js":
             "js/anime.esm.min.js",
         "node_modules/three/build/three.module.min.js":

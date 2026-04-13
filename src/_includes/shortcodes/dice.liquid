@@ -50,14 +50,4 @@
     </div>
 </div>
 
-<!-- animation handled by /js/dice.js (module script included in base template) -->
-<script type="module">
-    import { animate } from '/js/anime.esm.min.js';
-    animate('.dice', {
-        rotateY: '360deg',
-        rotateX: '360deg',
-        loop: true,
-        easing: 'linear',
-        duration: 8000,
-    });
-</script>
+<script type="module" src="/js/dice.js"></script>
