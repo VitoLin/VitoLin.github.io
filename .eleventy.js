@@ -52,6 +52,11 @@ export default async function (eleventyConfig) {
         module.default(eleventyConfig),
     );
 
+    eleventyConfig.setServerOptions({
+        host: "0.0.0.0",
+        port: 8067,
+    });
+
     return {
         dir: {
             input: "src",
