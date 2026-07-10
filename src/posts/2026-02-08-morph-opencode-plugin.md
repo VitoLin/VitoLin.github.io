@@ -1,5 +1,6 @@
 ---
 title: "OpenCode Plugin for MorphLLM"
+description: "An OpenCode plugin that uses MorphLLM's classifier to route prompts to the cheapest adequate model, cutting premium usage by 70-80%."
 date: 2026-02-08
 tags: post
 permalink: "/morph-opencode-plugin/"

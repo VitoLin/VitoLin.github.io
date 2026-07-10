@@ -3,6 +3,7 @@ import MarkdownItTOC from "markdown-it-table-of-contents";
 import AnchorPlugin from "markdown-it-anchor";
 import MarkdownItContainer from "markdown-it-container";
 import markdownItCodetabs from "markdown-it-codetabs";
+import fs from "fs";
 import path from "path";
 import { pathToFileURL } from "url";
 import siteData from "./src/_data/site.json" with { type: "json" };
@@ -51,6 +52,52 @@ export default async function (eleventyConfig) {
     await import(pathToFileURL(shortcodesLoader).href).then((module) =>
         module.default(eleventyConfig),
     );
+
+    eleventyConfig.addShortcode("postPreview", function (post) {
+        const raw = fs.readFileSync(post.inputPath, "utf8");
+        const content = raw.replace(/^---[\s\S]*?---/, "");
+
+        // First image: markdown syntax or HTML img tag
+        const markdownImg = content.match(/!\[[^\]]*\]\(([^)\s]+)/);
+        if (markdownImg) {
+            return `<img class="post-preview-image" src="${markdownImg[1]}" alt="">`;
+        }
+
+        const htmlImg = content.match(/<img[^>]+src="([^"]+)"/);
+        if (htmlImg) {
+            return `<img class="post-preview-image" src="${htmlImg[1]}" alt="">`;
+        }
+
+        // Text fallback: first ~180 chars of plain paragraph text
+        const lines = content.split("\n");
+        let text = "";
+        let inCodeBlock = false;
+
+        for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed) continue;
+            if (trimmed.startsWith("#")) continue;
+            if (trimmed.startsWith("{%")) continue;
+            if (trimmed.startsWith("{{")) continue;
+            if (trimmed.startsWith("```")) {
+                inCodeBlock = !inCodeBlock;
+                continue;
+            }
+            if (inCodeBlock) continue;
+            if (trimmed.startsWith("![")) continue;
+            if (trimmed.startsWith("[[")) continue;
+            if (trimmed.startsWith("<!-")) continue;
+
+            text += (text ? " " : "") + trimmed;
+            if (text.length >= 180) break;
+        }
+
+        if (text.length > 180) {
+            text = text.slice(0, 180).trim().replace(/\s+\S*$/, "") + "...";
+        }
+
+        return `<div class="post-preview-text"><p>${text}</p></div>`;
+    });
 
     eleventyConfig.setServerOptions({
         host: "0.0.0.0",

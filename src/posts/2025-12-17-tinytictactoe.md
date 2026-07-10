@@ -1,5 +1,6 @@
 ---
 title: "ML on an Arduino - Minimax Tic-Tac-Toe"
+description: "Implementing the Minimax algorithm for Tic-Tac-Toe on an Arduino Uno, complete with a TinkerCAD simulation and a web-based interactive demo."
 date: 2025-12-17
 tags: post
 permalink: "/tictactoe/"

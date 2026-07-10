@@ -1,5 +1,6 @@
 ---
 title: "Getting MCP Tools to Work"
+description: "A proxy that filters your MCP server tool lists so only the tools you need are exposed to the LLM, saving context window space."
 date: 2025-12-05
 tags: post
 permalink: "/mcpwrapped/"
